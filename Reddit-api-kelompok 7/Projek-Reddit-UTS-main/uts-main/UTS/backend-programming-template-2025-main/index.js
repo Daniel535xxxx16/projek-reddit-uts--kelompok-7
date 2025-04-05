@@ -1,10 +1,6 @@
-const express = require('express');
-const app = express();
-const routes = require('./routes');
+const app = require('./core/server');
+const config = require('./core/config');
 
-app.use(express.json());
-routes(app);
-
-app.listen(3000, () => {
-  console.log('Server running on http://localhost:3000');
+app.listen(config.port, () => {
+  console.log(Server running on http://localhost:${config.port});
 });
