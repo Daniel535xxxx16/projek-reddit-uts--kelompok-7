@@ -8,11 +8,13 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res) => {
   const user = await User.findOne({ username: req.body.username, password: req.body.password });
-  if (!user) return res.status(401).json({ error: 'Invalid credentials' });
-  res.json(user);
-};
+  if (!user) return res.status(401).json({ error: 'Invalid Username or' });
+  setTimeout(() =>{res.send(`Login Success. Welcome ${user.username}.`)},2000)};
 
 exports.getProfile = async (req, res) => {
   const user = await User.findById(req.params.id);
-  res.json(user);
+  if(!user) return res.status(401).json({ error: 'Cannot find user'});
+  res.send({username: user.username, 
+            email: user.email, 
+            joinedAt : user.joinedAt});
 };
