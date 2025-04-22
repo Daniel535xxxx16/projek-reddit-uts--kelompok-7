@@ -2,7 +2,7 @@ const Post = require('./post');
 
 //Endpoint 3
 async function getPosts(req, res){
-  const posts = await Post.find();
+  const posts = await Post.findById(req.params.id);
   res.json(posts);
 };
 
